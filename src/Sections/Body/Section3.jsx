@@ -43,7 +43,7 @@ const Section3 = () => {
           </h2>
           <p
             style={{ fontFamily: "regular" }}
-            className="text-[#848884] xl:text-[18px] px-4"
+            className="text-[#848884] xl:text-[18px] lg:-ml-4 2xl:ml-0 xl:px-4"
           >
             Seamlessly connect Smart Agent with your daily apps to automate
             workflows and amplify results.

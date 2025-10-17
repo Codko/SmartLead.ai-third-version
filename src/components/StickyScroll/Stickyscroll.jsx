@@ -43,11 +43,11 @@ export const StickyScroll = ({ content, contentClassName }) => {
       <div
         style={{fontFamily:"bold"}}
         className={cn(
-          "sticky top-10 hidden h-60 w-80 overflow-hidden rounded-md  lg:flex lg:items-center lg:justify-center lg:text-[80px] xl:text-[150px] opacity-5",
+          "sticky top-10 hidden h-60 w-80 overflow-hidden rounded-md  lg:flex lg:items-center lg:justify-center 2xl:text-[150px] lg:text-[80px] sm:text-[60px] text-[50px] opacity-5",
           contentClassName
         )}
       >
-        {content[activeCard].number ?? null} <h1 className="text-[80px]">/0</h1> <h1 className="text-[70px]">{cardLength - 1}</h1>
+        {content[activeCard].number ?? null} <h1 className="2xl:text-[80px] lg:text-[60px] sm:text-[40px] text-[30px] ">/0</h1> <h1 className="2xl:text-[80px] lg:text-[60px] sm:text-[40px] text-[30px] ">{cardLength - 1}</h1>
       </div>
       <motion.div
         key={activeCard}

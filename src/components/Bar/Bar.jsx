@@ -46,8 +46,8 @@ const Bar = () => {
       {/* Bottom Content Bar */}
       <div className="w-full sm:w-[90%] bg-[#edecf8] rounded-[20px] shadow-sm flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8 p-6 sm:p-8">
         {/* Left - Avatars + text */}
-        <div className="flex items-center gap-4">
-          <div className="flex -space-x-4">
+        <div className="flex items-center gap-10">
+          <div className="flex -space-x-4  lg:ml-0">
             <img
               src="/images/celeb1.jpg"
               alt=""
@@ -71,7 +71,7 @@ const Bar = () => {
           </div>
           <h1
             style={{ fontFamily: "regular" }}
-            className="text-[#7A7A7A] text-[13px] sm:text-[15px] md:text-[17px] lg:w-[210px]"
+            className="text-[#7A7A7A]  sm:text-[12px] md:text-[15px] 2xl:text-[17px] w-[150px] ml-10 lg:w-[210px]"
           >
             More than 20M people are getting advantage
           </h1>

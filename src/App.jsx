@@ -15,7 +15,7 @@ const App = () => {
     <div>
       <Hero />
       <Section2 />
-      <div className="">
+      <div className="-mt-[1800px] lg:-mt-[1600px]">
         <ScrollReveal />
       </div>
       <div>

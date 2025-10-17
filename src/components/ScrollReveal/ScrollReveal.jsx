@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Buttons from "../Button/Buttons";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -91,18 +92,18 @@ const ScrollReveal = () => {
   }, []);
 
   return (
-    <div className="flex flex-col lg:flex-row justify-center gap-10 -mt-[700px] lg:mt-0 px-4 lg:px-0">
+    <div className="flex flex-col lg:flex-row justify-center gap-10 -mt-[700px] lg:mt-0 px-4 lg:px-0 p-4">
       {/* LEFT COLUMN */}
       <div>
         <div ref={containerRef1} className="flex flex-col items-center gap-6">
           {/* Counter Box */}
-          <div className="w-[600px] h-[150px] rounded-[40px] bg-[#4A494B] flex items-center justify-center mb-6">
+          <div className="xl:w-[600px] xl:h-[150px] w-[300px] h-[80px] md:w-[500px] md:h-[125px] rounded-[20px] md:rounded-[40px] bg-[#4A494B] flex items-center justify-center mb-6">
             <h1
-              className="text-white text-[30px] flex gap-4 items-center"
+              className="text-white lg:text-[30px] text-[20px] flex gap-4 items-center"
               style={{ fontFamily: "bold-r" }}
             >
               Manual Process{" "}
-              <div className="w-[200px] h-20 bg-white rounded-4xl text-black flex justify-center items-center">
+              <div className="xl:w-[200px] w-[60px] h-12 xl:h-20 bg-white rounded-4xl text-black flex justify-center items-center">
                 <h1 ref={counterLeft} className="text-black text-[40px]">
                   0
                 </h1>
@@ -112,7 +113,7 @@ const ScrollReveal = () => {
           </div>
 
           {/* Static first box */}
-          <div className="w-[600px] h-[80px] rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between">
+          <div className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between">
             <div className="flex items-center gap-8 p-1">
               <img src="/images/Rectangle 758.svg" alt="" />
               <h1
@@ -128,7 +129,7 @@ const ScrollReveal = () => {
           {/* Animated Boxes */}
           <div
             ref={div1}
-            className="w-[600px] h-[80px] rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md:  rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
           >
             <div className="flex items-center gap-8 p-1">
               <img src="/images/Rectangle 758 (1).svg" alt="" />
@@ -148,7 +149,7 @@ const ScrollReveal = () => {
 
           <div
             ref={div2}
-            className="w-[600px] h-[80px] rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px]border border-[#D3CECE] bg-white flex items-center justify-between"
           >
             <div className="flex items-center gap-8 p-1">
               <img src="/images/Rectangle 758 (2).svg" alt="" />
@@ -168,7 +169,7 @@ const ScrollReveal = () => {
 
           <div
             ref={div3}
-            className="w-[600px] h-[80px] rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
           >
             <div className="flex items-center gap-8 p-1">
               <img src="/images/Rectangle 758 (3).svg" alt="" />
@@ -188,7 +189,7 @@ const ScrollReveal = () => {
 
           <div
             ref={div4}
-            className="w-[600px] h-[80px] rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
           >
             <div className="flex items-center gap-8 p-1">
               <img src="/images/Rectangle 758 (4).svg" alt="" />
@@ -208,7 +209,7 @@ const ScrollReveal = () => {
 
           <div
             ref={div5}
-            className="w-[600px] h-[80px] rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
           >
             <div className="flex items-center gap-8 p-1">
               <img src="/images/Rectangle 758 (5).svg" alt="" />
@@ -228,7 +229,7 @@ const ScrollReveal = () => {
 
           <div
             ref={div6}
-            className="w-[600px] h-[80px] rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
           >
             <div className="flex items-center gap-8 p-1">
               <img src="/images/crank.svg" alt="" />
@@ -248,7 +249,7 @@ const ScrollReveal = () => {
 
           <div
             ref={div7}
-            className="w-[600px] h-[80px] rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
           >
             <div className="flex items-center gap-8 p-1">
               <img src="/images/crank.svg" alt="" />
@@ -268,7 +269,7 @@ const ScrollReveal = () => {
 
           <div
             ref={div8}
-            className="w-[600px] h-[80px] rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
           >
             <div className="flex items-center gap-8 p-1">
               <img src="/images/crank.svg" alt="" />
@@ -288,7 +289,7 @@ const ScrollReveal = () => {
 
           <div
             ref={div9}
-            className="w-[600px] h-[80px] rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
           >
             <div className="flex items-center gap-8 p-1">
               <img src="/images/crank.svg" alt="" />
@@ -308,7 +309,7 @@ const ScrollReveal = () => {
 
           <div
             ref={div10}
-            className="w-[600px] h-[80px] rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
           >
             <div className="flex items-center gap-8 p-1">
               <img src="/images/crank.svg" alt="" />
@@ -332,13 +333,13 @@ const ScrollReveal = () => {
       <div>
         <div ref={containerRef2} className="flex flex-col items-center gap-6">
           {/* Counter Box */}
-          <div className="w-[600px] h-[150px] rounded-[40px] bg-[#6E58F1] flex items-center justify-center mb-6">
+          <div className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[40px] bg-[#6E58F1] flex items-center justify-center mb-6">
             <h1
-              className="text-white text-[30px] flex gap-4 items-center"
+              className="text-white lg:text-[30px] text-[20px] flex gap-4 items-center"
               style={{ fontFamily: "bold-r" }}
             >
               With Smartlead{" "}
-              <div className="w-[200px] h-20 bg-white rounded-4xl text-black flex justify-center items-center">
+              <div className="xl:w-[200px] w-[60px] h-12 xl:h-20 bg-white rounded-4xl text-black flex justify-center items-center">
                 <h1 ref={counterRight} className="text-black text-[40px]">
                   0
                 </h1>
@@ -348,7 +349,7 @@ const ScrollReveal = () => {
           </div>
 
           {/* Static first box */}
-          <div className="w-[600px] h-[80px] rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between">
+          <div className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between">
             <div className="flex items-center gap-8 p-1">
               <img src="/images/Rectangle 758.svg" alt="" />
               <h1
@@ -364,7 +365,7 @@ const ScrollReveal = () => {
           {/* Animated Boxes */}
           <div
             ref={rdiv1}
-            className="w-[600px] h-[80px] rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
           >
             <div className="flex items-center gap-8 p-1">
               <img src="/images/Rectangle 758 (1).svg" alt="" />
@@ -384,7 +385,7 @@ const ScrollReveal = () => {
 
           <div
             ref={rdiv2}
-            className="w-[600px] h-[80px] rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
           >
             <div className="flex items-center gap-8 p-1">
               <img src="/images/Rectangle 758 (2).svg" alt="" />
@@ -404,7 +405,7 @@ const ScrollReveal = () => {
 
           <div
             ref={rdiv3}
-            className="w-[600px] h-[80px] rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
           >
             <div className="flex items-center gap-8 p-1">
               <img src="/images/Rectangle 758 (3).svg" alt="" />
@@ -424,7 +425,7 @@ const ScrollReveal = () => {
 
           <div
             ref={rdiv4}
-            className="w-[600px] h-[80px] rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
           >
             <div className="flex items-center gap-8 p-1">
               <img src="/images/Rectangle 758 (4).svg" alt="" />
@@ -444,7 +445,7 @@ const ScrollReveal = () => {
 
           <div
             ref={rdiv5}
-            className="w-[600px] h-[80px] rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
           >
             <div className="flex items-center gap-8 p-1">
               <img src="/images/Rectangle 758 (5).svg" alt="" />
@@ -464,7 +465,7 @@ const ScrollReveal = () => {
 
           <div
             ref={rdiv6}
-            className="w-[600px] h-[80px] rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
           >
             <div className="flex items-center gap-8 p-1">
               <img src="/images/Rectangle 758 (6).svg" alt="" />
@@ -481,6 +482,16 @@ const ScrollReveal = () => {
               className="opacity-20 check p-4"
             />
           </div>
+        </div>
+        <div className="lg:flex flex-col items-center gap-6 hidden">
+          <p
+            style={{ fontFamily: "regular" }}
+            className="text-sm sm:text-base text-[#898989] w-1/2 text-center"
+          >
+            Let SmartAgents do the hard work, so your team can focus on the deal
+            work
+          </p>
+          <Buttons text={"Book A Demo"} />
         </div>
       </div>
     </div>

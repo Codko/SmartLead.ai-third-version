@@ -1,12 +1,12 @@
-import React from 'react'
-import FooterContent from '../../../../Secondversion/smartlead/src/Components/Content/FooterContent'
+import React from "react";
+import FooterContent from "../components/Content/FooterContent";
 
 const Footer = () => {
   return (
     <div>
-      <FooterContent/>
+      <FooterContent />
     </div>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
