@@ -25,9 +25,9 @@ const Header = () => {
           style={{ fontFamily: "regular" }}
           className="hidden sm:flex sm:gap-4 lg:gap-8 text-[#848884] sm:text-[14px] md:text-[16px] lg:text-[18px]"
         >
-          <li>Product</li>
-          <li>Features</li>
-          <li>Solutions</li>
+          <li className="transition-all duration-200 hover:text-[#6E58F1]">Product</li>
+          <li className="transition-all duration-200 hover:text-[#6E58F1]">Features</li>
+          <li className="transition-all duration-200 hover:text-[#6E58F1]">Solutions</li>
         </ul>
       </div>
       <div className="hidden lg:block p-4">
