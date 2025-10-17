@@ -149,7 +149,7 @@ const ScrollReveal = () => {
 
           <div
             ref={div2}
-            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px]border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
           >
             <div className="flex items-center gap-8 p-1">
               <img src="/images/Rectangle 758 (2).svg" alt="" />
@@ -454,26 +454,6 @@ const ScrollReveal = () => {
                 style={{ fontFamily: "bold-r" }}
               >
                 Analyze & Improve
-              </h1>
-            </div>
-            <img
-              src="/images/check-p.svg"
-              alt=""
-              className="opacity-20 check p-4"
-            />
-          </div>
-
-          <div
-            ref={rdiv6}
-            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
-          >
-            <div className="flex items-center gap-8 p-1">
-              <img src="/images/Rectangle 758 (6).svg" alt="" />
-              <h1
-                className="text-[#4C4C4C] text-[20px]"
-                style={{ fontFamily: "bold-r" }}
-              >
-                Final Step
               </h1>
             </div>
             <img
