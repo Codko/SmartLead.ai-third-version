@@ -1,5 +1,5 @@
 import React from "react";
-import FAQcontent from "../../Components/Content/FAQcontent";
+import FAQcontent from "../../components/Content/FAQcontent";
 import { FAQlist } from "../../components/FAQ/FAQlist";
 
 const FAQs = () => {
