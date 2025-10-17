@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@font-face {
+  font-family: "regular";
+  src: url("/fonts/Poppins-Regular.ttf");
+}
+@font-face {
+  font-family: "medium";
+  src: url("/fonts/Poppins-Medium.ttf");
+}
+@font-face {
+  font-family: "semi-bold";
+  src: url("/fonts/Poppins-SemiBold.ttf");
+}
+@font-face {
+  font-family: "bold";
+  src: url("/fonts/Poppins-Bold.ttf");
+}
+@font-face {
+  font-family: "regular-r";
+  src: url("/fonts/Roboto-Regular.ttf");
+}
+@font-face {
+  font-family: "medium-r";
+  src: url("/fonts/Roboto-Medium.ttf");
+}
+@font-face {
+  font-family: "semi-bold-r";
+  src: url("/fonts/Roboto-SemiBold.ttf");
+}
+@font-face {
+  font-family: "bold-r";
+  src: url("/fonts/Roboto-Bold.ttf");
+}
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
