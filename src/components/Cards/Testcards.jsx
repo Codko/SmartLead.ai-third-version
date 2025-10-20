@@ -2,13 +2,14 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Testcards = () => {
   const cardsRef = useRef([]);
 
-  useEffect(() => {
+  useGSAP(() => {
     cardsRef.current.forEach((card, i) => {
       gsap.fromTo(
         card,
@@ -20,7 +21,7 @@ const Testcards = () => {
           ease: "power2.out",
           scrollTrigger: {
             trigger: card,
-            start: "top center+=100", 
+            start: "top center+=100",
             end: "bottom center-=100",
           },
         }
@@ -30,7 +31,6 @@ const Testcards = () => {
 
   return (
     <div className="w-[90%] xl:w-[80%] 2xl:w-[72%] mt-10 mx-auto flex flex-col gap-6">
-      
       <div
         ref={(el) => (cardsRef.current[0] = el)}
         className="w-full bg-[#F9F9F9] flex flex-col lg:flex-row items-center rounded-[30px] gap-8 overflow-hidden"
@@ -74,12 +74,11 @@ const Testcards = () => {
         </div>
       </div>
 
-
       <div className="flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-row gap-4">
         {[1, 2, 3].map((_, i) => (
           <div
             key={i}
-            ref={(el) => (cardsRef.current[i + 1] = el)} 
+            ref={(el) => (cardsRef.current[i + 1] = el)}
             className="bg-[#F9F9F9] flex flex-col justify-between rounded-[30px] p-6 sm:p-8 gap-6 sm:gap-8 flex-1"
           >
             <img

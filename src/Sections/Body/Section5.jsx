@@ -7,7 +7,6 @@ import Bar from "../../components/Bar/Bar";
 const Section5 = () => {
   return (
     <div className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden mt-40">
-      
       <div className="absolute inset-0 z-0 opacity-10">
         <video
           className="w-full h-full object-cover"
@@ -19,7 +18,6 @@ const Section5 = () => {
         />
       </div>
 
-      
       <div className="relative z-10 flex flex-col items-center justify-center gap-20 px-6    w-full">
         <GTMcontent />
         <StickyScroll content={content} />

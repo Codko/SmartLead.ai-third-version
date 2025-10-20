@@ -3,29 +3,25 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Buttons from "../Button/Buttons";
+import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Bar = () => {
   const barRef = useRef(null);
 
-  useEffect(() => {
-    const el = barRef.current;
-    gsap.fromTo(
-      el,
-      { opacity: 0, y: 100 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: el,
-          start: "top 80%", // starts when component reaches 80% of viewport height
-          once: true, // plays one time only
-        },
-      }
-    );
+  useGSAP(() => {
+    gsap.from(barRef.current, {
+      opacity: 0,
+      y: 200,
+      duration: 1.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: barRef.current,
+        start: "top 80%",
+        once: true,
+      },
+    });
   }, []);
 
   return (

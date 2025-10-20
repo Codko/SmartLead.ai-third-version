@@ -1,14 +1,13 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Buttons from "../Button/Buttons";
-
+import { SlEnergy } from "react-icons/sl";
 gsap.registerPlugin(ScrollTrigger);
 
 const ScrollReveal = () => {
-  // Left side refs
   const containerRef1 = useRef(null);
   const counterLeft = useRef(null);
   const div1 = useRef(null);
@@ -20,9 +19,7 @@ const ScrollReveal = () => {
   const div7 = useRef(null);
   const div8 = useRef(null);
   const div9 = useRef(null);
-  const div10 = useRef(null);
 
-  // Right side refs
   const containerRef2 = useRef(null);
   const counterRight = useRef(null);
   const rdiv1 = useRef(null);
@@ -39,27 +36,27 @@ const ScrollReveal = () => {
       counterRef,
       distance = 60,
       timelineOffset = 0.3,
-      scrollEnd = 2000
+      scrollEnd = 2200
     ) => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: container.current,
-          start: "top top",
+          start: "top 5%",
           end: `+=${scrollEnd}`,
           pin: true,
-          scrub: true,
+          scrub: 1.5,
         },
       });
 
       refs.forEach((divRef, i) => {
         tl.to(
           divRef.current,
-          { y: -distance * (i + 1), duration: 1 },
+          { y: -distance * (i + 1), duration: 5, ease: "expoScale" },
           i * timelineOffset
         )
           .to(
             divRef.current?.querySelector(".check"),
-            { opacity: 1, duration: 0.5 },
+            { opacity: 1, duration: 1 },
             i * timelineOffset
           )
           .to(
@@ -69,401 +66,615 @@ const ScrollReveal = () => {
           );
       });
     };
-
-    // LEFT column
     animateSet(
-      [div1, div2, div3, div4, div5, div6, div7, div8, div9, div10],
+      [div1, div2, div3, div4, div5, div6, div7, div8, div9],
       containerRef1,
       counterLeft,
-      60,
-      0.3,
-      2000
+      160,
+      1,
+      2200
     );
 
-    // RIGHT column — faster
     animateSet(
       [rdiv1, rdiv2, rdiv3, rdiv4, rdiv5, rdiv6],
       containerRef2,
       counterRight,
-      90,
-      0.2,
-      1500
+      160,
+      0.6,
+      1000
     );
   }, []);
 
   return (
-    <div className="flex flex-col lg:flex-row justify-center gap-10 -mt-[700px] lg:mt-0 px-4 lg:px-0 p-4">
-      {/* LEFT COLUMN */}
+    <div className="flex flex-col lg:flex-row lg:justify-center  lg:gap-10 -mt-[700px] lg:mt-0 px-4 lg:px-0 p-4">
       <div>
-        <div ref={containerRef1} className="flex flex-col items-center gap-6">
-          {/* Counter Box */}
-          <div className="xl:w-[600px] xl:h-[150px] w-[300px] h-[80px] md:w-[500px] md:h-[125px] rounded-[20px] md:rounded-[40px] bg-[#4A494B] flex items-center justify-center mb-6">
+        <div ref={containerRef1} className="flex flex-col items-center gap-28">
+          <div className="xl:w-[600px] xl:h-[70px] w-[300px]  h-[100px] md:w-[500px] md:h-[125px] md: rounded-[10px] bg-[#242323] flex items-center justify-center ">
             <h1
-              className="text-white lg:text-[30px] text-[20px] flex gap-4 items-center"
+              className="text-white lg:text-[23px] text-[20px] flex gap-4 items-center"
               style={{ fontFamily: "bold-r" }}
             >
               Manual Process{" "}
-              <div className="xl:w-[200px] w-[60px] h-12 xl:h-20 bg-white rounded-4xl text-black flex justify-center items-center">
-                <h1 ref={counterLeft} className="text-black text-[40px]">
+              <div className="xl:w-[80px] w-[60px] h-12 xl:h-10 bg-[#4C4C4C] rounded-2xl border-4 border-[#3b3939] text-white flex justify-center items-center ">
+                <h1 ref={counterLeft} className="text-white text-[23px]">
                   0
                 </h1>
               </div>
-              Hrs
+              <span className="text-[18px]">Hours</span>
             </h1>
           </div>
 
-          {/* Static first box */}
-          <div className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between">
-            <div className="flex items-center gap-8 p-1">
-              <img src="/images/Rectangle 758.svg" alt="" />
-              <h1
-                className="text-[#4C4C4C] text-[20px]"
-                style={{ fontFamily: "bold-r" }}
-              >
-                Define Target Audience
-              </h1>
-            </div>
-            <img src="/images/check.svg" alt="" className="check p-4" />
-          </div>
+          <div className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between">
+            <div className="flex items-center gap-8 px-6 pt-2">
+              <div>
+                <h1
+                  className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
+                  style={{ fontFamily: "bold-r" }}
+                >
+                  Define Target Audience
+                </h1>
+                <p
+                  style={{ fontFamily: "regular" }}
+                  className="text-[#848884] lg:text-[14px] text-[10px] mt-2 lg:mt-3"
+                >
+                  <span className="block md:hidden">
+                    Give your sales team the freedom...
+                  </span>
 
-          {/* Animated Boxes */}
-          <div
-            ref={div1}
-            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md:  rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
-          >
-            <div className="flex items-center gap-8 p-1">
-              <img src="/images/Rectangle 758 (1).svg" alt="" />
-              <h1
-                className="text-[#4C4C4C] text-[20px]"
-                style={{ fontFamily: "bold-r" }}
-              >
-                Personalize Outreach
-              </h1>
+                  <span className="hidden md:block">
+                    Give your sales team the freedom from doing unwanted manual,
+                    repetitive tasks. Stop juggling between tools.
+                  </span>
+                </p>
+              </div>
             </div>
             <img
               src="/images/check.svg"
               alt=""
-              className="opacity-20 check p-4"
+              className="check p-1 pt-4 w-[40px]  h-[40px]"
+            />
+          </div>
+
+          <div
+            ref={div1}
+            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
+          >
+            <div className="flex items-center gap-8 px-6 pt-2">
+              <div>
+                <h1
+                  className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
+                  style={{ fontFamily: "bold-r" }}
+                >
+                  Source Leads Manually
+                </h1>
+                <p
+                  style={{ fontFamily: "regular" }}
+                  className="text-[#848884] lg:text-[14px] text-[10px] mt-2 lg:mt-3"
+                >
+                  <span className="block md:hidden">
+                    Give your sales team the freedom...
+                  </span>
+
+                  <span className="hidden md:block">
+                    Give your sales team the freedom from doing unwanted manual,
+                    repetitive tasks. Stop juggling between tools.
+                  </span>
+                </p>
+              </div>
+            </div>
+            <img
+              src="/images/check.svg"
+              alt=""
+              className="opacity-10 check p-1 pt-4 h-[40px] w-[40px]"
             />
           </div>
 
           <div
             ref={div2}
-            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between "
           >
-            <div className="flex items-center gap-8 p-1">
-              <img src="/images/Rectangle 758 (2).svg" alt="" />
-              <h1
-                className="text-[#4C4C4C] text-[20px]"
-                style={{ fontFamily: "bold-r" }}
-              >
-                Automate Messaging
-              </h1>
+            <div className="flex items-center gap-8 px-6 pt-2">
+              <div>
+                <h1
+                  className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
+                  style={{ fontFamily: "bold-r" }}
+                >
+                  Clean & Format Lead Data
+                </h1>
+                <p
+                  style={{ fontFamily: "regular" }}
+                  className="text-[#848884] lg:text-[14px] text-[10px] mt-2 lg:mt-3"
+                >
+                  <span className="block md:hidden">
+                    Give your sales team the freedom...
+                  </span>
+
+                  <span className="hidden md:block">
+                    Give your sales team the freedom from doing unwanted manual,
+                    repetitive tasks. Stop juggling between tools.
+                  </span>
+                </p>
+              </div>
             </div>
             <img
               src="/images/check.svg"
               alt=""
-              className="opacity-20 check p-4"
+              className="opacity-10 check p-1 pt-4 h-[40px] w-[40px]"
             />
           </div>
 
           <div
             ref={div3}
-            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
           >
-            <div className="flex items-center gap-8 p-1">
-              <img src="/images/Rectangle 758 (3).svg" alt="" />
-              <h1
-                className="text-[#4C4C4C] text-[20px]"
-                style={{ fontFamily: "bold-r" }}
-              >
-                Optimize Timing
-              </h1>
+            <div className="flex items-center gap-8 px-6 pt-2">
+              <div>
+                <h1
+                  className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
+                  style={{ fontFamily: "bold-r" }}
+                >
+                  Enrich Lead Details
+                </h1>
+                <p
+                  style={{ fontFamily: "regular" }}
+                  className="text-[#848884] lg:text-[14px] text-[10px] mt-2 lg:mt-3"
+                >
+                  <span className="block md:hidden">
+                    Give your sales team the freedom...
+                  </span>
+
+                  <span className="hidden md:block">
+                    Give your sales team the freedom from doing unwanted manual,
+                    repetitive tasks. Stop juggling between tools.
+                  </span>
+                </p>
+              </div>
             </div>
             <img
               src="/images/check.svg"
               alt=""
-              className="opacity-20 check p-4"
+              className="opacity-10 check p-1 pt-4 h-[40px] w-[40px] "
             />
           </div>
 
           <div
             ref={div4}
-            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
           >
-            <div className="flex items-center gap-8 p-1">
-              <img src="/images/Rectangle 758 (4).svg" alt="" />
-              <h1
-                className="text-[#4C4C4C] text-[20px]"
-                style={{ fontFamily: "bold-r" }}
-              >
-                Track Engagement
-              </h1>
+            <div className="flex items-center gap-8 px-6 pt-2">
+              <div>
+                <h1
+                  className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
+                  style={{ fontFamily: "bold-r" }}
+                >
+                  Write Outreach Copy{" "}
+                </h1>
+                <p
+                  style={{ fontFamily: "regular" }}
+                  className="text-[#848884] lg:text-[14px] text-[10px] mt-2 lg:mt-3"
+                >
+                  <span className="block md:hidden">
+                    Give your sales team the freedom...
+                  </span>
+
+                  <span className="hidden md:block">
+                    Give your sales team the freedom from doing unwanted manual,
+                    repetitive tasks. Stop juggling between tools.
+                  </span>
+                </p>
+              </div>
             </div>
             <img
               src="/images/check.svg"
               alt=""
-              className="opacity-20 check p-4"
+              className="opacity-10 check p-1 pt-4 h-[40px] w-[40px]"
             />
           </div>
 
           <div
             ref={div5}
-            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
           >
-            <div className="flex items-center gap-8 p-1">
-              <img src="/images/Rectangle 758 (5).svg" alt="" />
-              <h1
-                className="text-[#4C4C4C] text-[20px]"
-                style={{ fontFamily: "bold-r" }}
-              >
-                Refine Strategy
-              </h1>
+            <div className="flex items-center gap-8 px-6 pt-2">
+              <div>
+                <h1
+                  className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
+                  style={{ fontFamily: "bold-r" }}
+                >
+                  Upload into CRM or Email Tool
+                </h1>
+                <p
+                  style={{ fontFamily: "regular" }}
+                  className="text-[#848884] lg:text-[14px] text-[10px] mt-2 lg:mt-3"
+                >
+                  <span className="block md:hidden">
+                    Give your sales team the freedom...
+                  </span>
+
+                  <span className="hidden md:block">
+                    Give your sales team the freedom from doing unwanted manual,
+                    repetitive tasks. Stop juggling between tools.
+                  </span>
+                </p>
+              </div>
             </div>
             <img
               src="/images/check.svg"
               alt=""
-              className="opacity-20 check p-4"
+              className="opacity-10 check p-1 pt-4 h-[40px] w-[40px] "
             />
           </div>
 
           <div
             ref={div6}
-            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
           >
-            <div className="flex items-center gap-8 p-1">
-              <img src="/images/crank.svg" alt="" />
-              <h1
-                className="text-[#4C4C4C] text-[20px]"
-                style={{ fontFamily: "bold-r" }}
-              >
-                Scale Outreach
-              </h1>
+            <div className="flex items-center gap-8 px-6 pt-2">
+              <div>
+                <h1
+                  className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
+                  style={{ fontFamily: "bold-r" }}
+                >
+                  Schedule Messages & Follow-ups
+                </h1>
+                <p
+                  style={{ fontFamily: "regular" }}
+                  className="text-[#848884] lg:text-[14px] text-[10px] mt-2 lg:mt-3"
+                >
+                  <span className="block md:hidden">
+                    Give your sales team the freedom...
+                  </span>
+
+                  <span className="hidden md:block">
+                    Give your sales team the freedom from doing unwanted manual,
+                    repetitive tasks. Stop juggling between tools.
+                  </span>
+                </p>
+              </div>
             </div>
             <img
               src="/images/check.svg"
               alt=""
-              className="opacity-20 check p-4"
+              className="opacity-10 check p-1 pt-4 h-[40px] w-[40px]"
             />
           </div>
 
           <div
             ref={div7}
-            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
           >
-            <div className="flex items-center gap-8 p-1">
-              <img src="/images/crank.svg" alt="" />
-              <h1
-                className="text-[#4C4C4C] text-[20px]"
-                style={{ fontFamily: "bold-r" }}
-              >
-                Scale Outreach
-              </h1>
+            <div className="flex items-center gap-8 px-6 pt-2">
+              <div>
+                <h1
+                  className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
+                  style={{ fontFamily: "bold-r" }}
+                >
+                  Monitor Campaign Performance
+                </h1>
+                <p
+                  style={{ fontFamily: "regular" }}
+                  className="text-[#848884] lg:text-[14px] text-[10px] mt-2 lg:mt-3"
+                >
+                  <span className="block md:hidden">
+                    Give your sales team the freedom...
+                  </span>
+
+                  <span className="hidden md:block">
+                    Give your sales team the freedom from doing unwanted manual,
+                    repetitive tasks. Stop juggling between tools.
+                  </span>
+                </p>
+              </div>
             </div>
             <img
               src="/images/check.svg"
               alt=""
-              className="opacity-20 check p-4"
+              className="opacity-10 check p-1 pt-4 h-[40px] w-[40px]"
             />
           </div>
 
           <div
             ref={div8}
-            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
           >
-            <div className="flex items-center gap-8 p-1">
-              <img src="/images/crank.svg" alt="" />
-              <h1
-                className="text-[#4C4C4C] text-[20px]"
-                style={{ fontFamily: "bold-r" }}
-              >
-                Scale Outreach
-              </h1>
+            <div className="flex items-center gap-8 px-6 pt-2">
+              <div>
+                <h1
+                  className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
+                  style={{ fontFamily: "bold-r" }}
+                >
+                  Respond & Nurture Leads
+                </h1>
+                <p
+                  style={{ fontFamily: "regular" }}
+                  className="text-[#848884] lg:text-[14px] text-[10px] mt-2 lg:mt-3"
+                >
+                  <span className="block md:hidden">
+                    Give your sales team the freedom...
+                  </span>
+
+                  <span className="hidden md:block">
+                    Give your sales team the freedom from doing unwanted manual,
+                    repetitive tasks. Stop juggling between tools.
+                  </span>
+                </p>
+              </div>
             </div>
             <img
               src="/images/check.svg"
               alt=""
-              className="opacity-20 check p-4"
+              className="opacity-10 check p-1 pt-4 h-[40px] w-[40px]"
             />
           </div>
 
           <div
             ref={div9}
-            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
           >
-            <div className="flex items-center gap-8 p-1">
-              <img src="/images/crank.svg" alt="" />
-              <h1
-                className="text-[#4C4C4C] text-[20px]"
-                style={{ fontFamily: "bold-r" }}
-              >
-                Scale Outreach
-              </h1>
-            </div>
-            <img
-              src="/images/check.svg"
-              alt=""
-              className="opacity-20 check p-4"
-            />
-          </div>
+            <div className="flex items-center gap-8 px-6 pt-2">
+              <div>
+                <h1
+                  className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
+                  style={{ fontFamily: "bold-r" }}
+                >
+                  Analyze & Optimize
+                </h1>
+                <p
+                  style={{ fontFamily: "regular" }}
+                  className="text-[#848884] lg:text-[14px] text-[10px] mt-2 lg:mt-3"
+                >
+                  <span className="block md:hidden">
+                    Give your sales team the freedom...
+                  </span>
 
-          <div
-            ref={div10}
-            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
-          >
-            <div className="flex items-center gap-8 p-1">
-              <img src="/images/crank.svg" alt="" />
-              <h1
-                className="text-[#4C4C4C] text-[20px]"
-                style={{ fontFamily: "bold-r" }}
-              >
-                Scale Outreach
-              </h1>
+                  <span className="hidden md:block">
+                    Give your sales team the freedom from doing unwanted manual,
+                    repetitive tasks. Stop juggling between tools.
+                  </span>
+                </p>
+              </div>
             </div>
             <img
               src="/images/check.svg"
               alt=""
-              className="opacity-20 check p-4"
+              className="opacity-10 check p-1 pt-4 h-[40px] w-[40px]"
             />
           </div>
         </div>
       </div>
 
-      {/* RIGHT COLUMN */}
-      <div>
-        <div ref={containerRef2} className="flex flex-col items-center gap-6">
-          {/* Counter Box */}
-          <div className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[40px] bg-[#6E58F1] flex items-center justify-center mb-6">
+      <div className="-mt-[1200px] lg:-mt-0">
+        <div ref={containerRef2} className="flex flex-col items-center gap-28">
+          <div className="xl:w-[600px] xl:h-[70px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[10px] bg-[#6E58F1] flex items-center justify-center">
             <h1
-              className="text-white lg:text-[30px] text-[20px] flex gap-4 items-center"
-              style={{ fontFamily: "bold-r" }}
+              className="text-white lg:text-[23px] text-[18px] flex gap-4 items-center"
+              style={{ fontFamily: "semi-bold-r" }}
             >
-              With Smartlead{" "}
-              <div className="xl:w-[200px] w-[60px] h-12 xl:h-20 bg-white rounded-4xl text-black flex justify-center items-center">
-                <h1 ref={counterRight} className="text-black text-[40px]">
+              SmartAgent Process{" "}
+              <div className="xl:w-[80px] w-[50px] h-12 xl:h-10 bg-[#FFEE00]  rounded-2xl lg:rounded-[60px] text-black flex justify-center items-center ">
+                <SlEnergy className="text-[15px]" />
+                <h1
+                  style={{ fontFamily: "regular" }}
+                  className="text-black lg:text-[18px] text-[12px]"
+                >
+                  Done
+                </h1>
+              </div>
+              <div className="xl:w-[80px] w-[60px] h-12 xl:h-10 bg-[#7e6ed6] border-4 border-[#827baa] rounded-2xl text-black flex justify-center items-center ">
+                <h1 ref={counterRight} className="text-white text-[23px]">
                   0
                 </h1>
               </div>
-              Min
+              <span className="text-[18px]">
+                Min<span className="hidden lg:block">utes</span>
+              </span>
             </h1>
           </div>
 
-          {/* Static first box */}
-          <div className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between">
-            <div className="flex items-center gap-8 p-1">
-              <img src="/images/Rectangle 758.svg" alt="" />
-              <h1
-                className="text-[#4C4C4C] text-[20px]"
-                style={{ fontFamily: "bold-r" }}
-              >
-                Define Your Campaign
-              </h1>
-            </div>
-            <img src="/images/check-p.svg" alt="" className="check p-4" />
-          </div>
+          <div className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between">
+            <div className="flex items-center gap-8 px-6 pt-2">
+              <div>
+                <div>
+                  <h1
+                    className="text-[#4C4C4C] lg:text-[18px] text-[14px] "
+                    style={{ fontFamily: "bold-r" }}
+                  >
+                    Define Your Campaign
+                  </h1>
+                  <p
+                    style={{ fontFamily: "regular" }}
+                    className="text-[#848884] lg:text-[14px] text-[10px] mt-2 lg:mt-3"
+                  >
+                    <span className="block md:hidden">
+                      Give your sales team the freedom...
+                    </span>
 
-          {/* Animated Boxes */}
-          <div
-            ref={rdiv1}
-            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
-          >
-            <div className="flex items-center gap-8 p-1">
-              <img src="/images/Rectangle 758 (1).svg" alt="" />
-              <h1
-                className="text-[#4C4C4C] text-[20px]"
-                style={{ fontFamily: "bold-r" }}
-              >
-                Discover Quality Leads
-              </h1>
+                    <span className="hidden md:block">
+                      Give your sales team the freedom from doing unwanted
+                      manual, repetitive tasks. Stop juggling between tools.
+                    </span>
+                  </p>
+                </div>
+              </div>
             </div>
             <img
               src="/images/check-p.svg"
               alt=""
-              className="opacity-20 check p-4"
+              className="check p-1 pt-4 h-[40px] w-[40px] "
+            />
+          </div>
+
+          <div
+            ref={rdiv1}
+            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
+          >
+            <div className="flex items-center gap-8 px-6 pt-2">
+              <div>
+                <h1
+                  className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
+                  style={{ fontFamily: "bold-r" }}
+                >
+                  Discover Quality Leads
+                </h1>
+                <p
+                  style={{ fontFamily: "regular" }}
+                  className="text-[#848884] lg:text-[14px] text-[10px] mt-2 lg:mt-3"
+                >
+                  <span className="block md:hidden">
+                    Give your sales team the freedom...
+                  </span>
+
+                  <span className="hidden md:block">
+                    Give your sales team the freedom from doing unwanted manual,
+                    repetitive tasks. Stop juggling between tools.
+                  </span>
+                </p>
+              </div>
+            </div>
+            <img
+              src="/images/check-p.svg"
+              alt=""
+              className="opacity-10 check p-1 pt-4 h-[40px] w-[40px]"
             />
           </div>
 
           <div
             ref={rdiv2}
-            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
           >
-            <div className="flex items-center gap-8 p-1">
-              <img src="/images/Rectangle 758 (2).svg" alt="" />
-              <h1
-                className="text-[#4C4C4C] text-[20px]"
-                style={{ fontFamily: "bold-r" }}
-              >
-                Enrich Lead Data
-              </h1>
+            <div className="flex items-center gap-8 px-6 pt-2">
+              <div>
+                <h1
+                  className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
+                  style={{ fontFamily: "bold-r" }}
+                >
+                  Enrich Lead Data
+                </h1>
+                <p
+                  style={{ fontFamily: "regular" }}
+                  className="text-[#848884] lg:text-[14px] text-[10px] mt-2 lg:mt-3"
+                >
+                  <span className="block md:hidden">
+                    Give your sales team the freedom...
+                  </span>
+
+                  <span className="hidden md:block">
+                    Give your sales team the freedom from doing unwanted manual,
+                    repetitive tasks. Stop juggling between tools.
+                  </span>
+                </p>
+              </div>
             </div>
             <img
               src="/images/check-p.svg"
               alt=""
-              className="opacity-20 check p-4"
+              className="opacity-10 check p-1 pt-4 h-[40px] w-[40px]"
             />
           </div>
 
           <div
             ref={rdiv3}
-            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
           >
-            <div className="flex items-center gap-8 p-1">
-              <img src="/images/Rectangle 758 (3).svg" alt="" />
-              <h1
-                className="text-[#4C4C4C] text-[20px]"
-                style={{ fontFamily: "bold-r" }}
-              >
-                Craft Personalized Messages
-              </h1>
+            <div className="flex items-center gap-8 px-6 pt-2">
+              <div>
+                <h1
+                  className="text-[#4C4C4C] lg:text-[18px] text-[13px]"
+                  style={{ fontFamily: "bold-r" }}
+                >
+                  Craft Personalized Messages
+                </h1>
+                <p
+                  style={{ fontFamily: "regular" }}
+                  className="text-[#848884] lg:text-[14px] text-[10px] mt-2 lg:mt-3"
+                >
+                  <span className="block md:hidden">
+                    Give your sales team the freedom...
+                  </span>
+
+                  <span className="hidden md:block">
+                    Give your sales team the freedom from doing unwanted manual,
+                    repetitive tasks. Stop juggling between tools.
+                  </span>
+                </p>
+              </div>
             </div>
             <img
               src="/images/check-p.svg"
               alt=""
-              className="opacity-20 check p-4"
+              className="opacity-10 check p-1 pt-4 h-[40px] w-[40px]"
             />
           </div>
 
           <div
             ref={rdiv4}
-            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
           >
-            <div className="flex items-center gap-8 p-1">
-              <img src="/images/Rectangle 758 (4).svg" alt="" />
-              <h1
-                className="text-[#4C4C4C] text-[20px]"
-                style={{ fontFamily: "bold-r" }}
-              >
-                Automate Outreach & Follow-ups
-              </h1>
+            <div className="flex items-center gap-8 px-6 pt-2">
+              <div>
+                <h1
+                  className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
+                  style={{ fontFamily: "bold-r" }}
+                >
+                  Automate Outreach & Follow-ups
+                </h1>{" "}
+                <p
+                  style={{ fontFamily: "regular" }}
+                  className="text-[#848884] lg:text-[14px] text-[10px] mt-2 lg:mt-3"
+                >
+                  <span className="block md:hidden">
+                    Give your sales team the freedom...
+                  </span>
+
+                  <span className="hidden md:block">
+                    Give your sales team the freedom from doing unwanted manual,
+                    repetitive tasks. Stop juggling between tools.
+                  </span>
+                </p>
+              </div>
             </div>
             <img
               src="/images/check-p.svg"
               alt=""
-              className="opacity-20 check p-4"
+              className="opacity-10 check p-1 pt-4 h-[40px] w-[40px]"
             />
           </div>
 
           <div
             ref={rdiv5}
-            className="xl:w-[600px] xl:h-[150px] w-[300px]  h-[80px] md:w-[500px] md:h-[125px] md: rounded-[20px] border border-[#D3CECE] bg-white flex items-center justify-between"
+            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
           >
-            <div className="flex items-center gap-8 p-1">
-              <img src="/images/Rectangle 758 (5).svg" alt="" />
-              <h1
-                className="text-[#4C4C4C] text-[20px]"
-                style={{ fontFamily: "bold-r" }}
-              >
-                Analyze & Improve
-              </h1>
+            <div className="flex items-center gap-8 px-6 pt-2">
+              <div>
+                <h1
+                  className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
+                  style={{ fontFamily: "bold-r" }}
+                >
+                  Analyze & Improve
+                </h1>
+                <p
+                  style={{ fontFamily: "regular" }}
+                  className="text-[#848884] lg:text-[14px] text-[10px] mt-2 lg:mt-3"
+                >
+                  <span className="block md:hidden">
+                    Give your sales team the freedom...
+                  </span>
+
+                  <span className="hidden md:block">
+                    Give your sales team the freedom from doing unwanted manual,
+                    repetitive tasks. Stop juggling between tools.
+                  </span>
+                </p>
+              </div>
             </div>
             <img
               src="/images/check-p.svg"
               alt=""
-              className="opacity-20 check p-4"
+              className="opacity-10 check p-1 pt-4 h-[40px] w-[40px] "
             />
           </div>
         </div>
-        <div className="lg:flex flex-col items-center gap-6 hidden">
+        <div className="lg:flex flex-col items-center gap-6 hidden mt-48">
           <p
             style={{ fontFamily: "regular" }}
             className="text-sm sm:text-base text-[#898989] w-1/2 text-center"

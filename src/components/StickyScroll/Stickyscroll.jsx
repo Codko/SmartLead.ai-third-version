@@ -8,7 +8,6 @@ export const StickyScroll = ({ content, contentClassName }) => {
   const [activeCard, setActiveCard] = React.useState(0);
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
-    // uncomment line 22 and comment line 23 if you DONT want the overflow container and want to have it change on the entire page scroll
     // target: ref,
     container: ref,
     offset: ["start start", "end start"],
@@ -41,13 +40,19 @@ export const StickyScroll = ({ content, contentClassName }) => {
       ref={ref}
     >
       <div
-        style={{fontFamily:"bold"}}
+        style={{ fontFamily: "bold" }}
         className={cn(
           "sticky top-10 hidden h-60 w-80 overflow-hidden rounded-md  lg:flex lg:items-center lg:justify-center 2xl:text-[150px] lg:text-[80px] sm:text-[60px] text-[50px] opacity-5",
           contentClassName
         )}
       >
-        {content[activeCard].number ?? null} <h1 className="2xl:text-[80px] lg:text-[60px] sm:text-[40px] text-[30px] ">/0</h1> <h1 className="2xl:text-[80px] lg:text-[60px] sm:text-[40px] text-[30px] ">{cardLength - 1}</h1>
+        {content[activeCard].number ?? null}{" "}
+        <h1 className="2xl:text-[80px] lg:text-[60px] sm:text-[40px] text-[30px] ">
+          /0
+        </h1>{" "}
+        <h1 className="2xl:text-[80px] lg:text-[60px] sm:text-[40px] text-[30px] ">
+          {cardLength - 1}
+        </h1>
       </div>
       <motion.div
         key={activeCard}
@@ -57,14 +62,14 @@ export const StickyScroll = ({ content, contentClassName }) => {
         transition={{ duration: 0.4, ease: "easeOut" }}
         style={{ background: "transparent" }}
         className={cn(
-          "sticky top-10 hidden h-60 w-80 overflow-hidden rounded-md bg-white lg:block ",
+          "sticky top-10 hidden lg:block lg:h-60 lg:w-80 overflow-hidden rounded-md bg-white ",
           contentClassName
         )}
       >
         {content[activeCard].content ?? null}
       </motion.div>
       <div className="div relative flex items-start px-8">
-        <div className="max-w-3xl lg:max-w-4xl w-full">
+        <div className="max-w-xl lg:max-w-4xl w-full">
           {content.map((item, index) => (
             <div key={item.title + index} className="my-20">
               <motion.h2
@@ -75,7 +80,7 @@ export const StickyScroll = ({ content, contentClassName }) => {
                 animate={{
                   opacity: activeCard === index ? 1 : 0.3,
                 }}
-                className="text-[32px] font-bold text-[#242323]"
+                className="lg:text-[32px] text-[20px] font-bold text-[#242323]"
               >
                 {item.title}
               </motion.h2>
@@ -87,7 +92,7 @@ export const StickyScroll = ({ content, contentClassName }) => {
                 animate={{
                   opacity: activeCard === index ? 1 : 0.3,
                 }}
-                className="text-[18px] mt-10 max-w-xl text-[#848884]"
+                className="lg:text-[18px]  mt-10 max-w-xl text-[#848884]"
               >
                 {item.description}
               </motion.p>

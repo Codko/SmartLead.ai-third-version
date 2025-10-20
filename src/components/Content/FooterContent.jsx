@@ -56,7 +56,7 @@ const FooterContent = () => {
       ref={footerRef}
       className="w-full shadow-[#898989] shadow-2xl bg-white"
     >
-      <div className="footer-top flex flex-col lg:flex-row items-center justify-around px-4 md:px-8 lg:px-[26px] pt-10 lg:pt-20">
+      <div className="footer-top flex flex-col items-start lg:flex-row lg:items-center lg:justify-around px-4 md:px-8 lg:px-[26px] pt-10 lg:pt-20">
         <div className="mb-8 lg:mb-0">
           <img src="/images/Vector.svg" alt="" className="mx-auto lg:mx-0" />
         </div>
@@ -64,7 +64,7 @@ const FooterContent = () => {
         <div className="w-full lg:w-[439px] px-4 mb-8 lg:mb-0">
           <p
             style={{ fontFamily: "regular" }}
-            className="text-base md:text-[15px] text-[#898989] text-center lg:text-left"
+            className="text-base md:text-[15px] text-[#898989] lg:text-center lg:text-left"
           >
             AI-native Outbound OS built for SDRs, agencies, and GTM teams who
             want to scale with intelligence.
@@ -88,7 +88,7 @@ const FooterContent = () => {
         </div>
       </div>
 
-      <div className="footer-grid  px-4 md:px-8 lg:px-[26px] mt-16 lg:mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 mx-[70px]">
+      <div className="px-4 md:px-8 lg:px-[26px] mt-16 lg:mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 lg:mx-[70px]">
         {[
           {
             title: "Product",

@@ -12,7 +12,7 @@ import ScrollReveal from "./components/ScrollReveal/ScrollReveal";
 
 const App = () => {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <Hero />
       <Section2 />
       <div className="-mt-[1800px] lg:-mt-[1600px]">
