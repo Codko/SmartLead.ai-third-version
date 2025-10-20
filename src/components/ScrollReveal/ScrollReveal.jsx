@@ -466,7 +466,7 @@ const ScrollReveal = () => {
                 </h1>
               </div>
               <span className="text-[18px]">
-                Min<span className="hidden lg:block">utes</span>
+                Min<span className="hidden lg:inline-block">utes</span>
               </span>
             </h1>
           </div>
