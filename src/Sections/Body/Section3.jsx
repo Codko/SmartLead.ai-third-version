@@ -2,7 +2,7 @@ import React from "react";
 
 const Section3 = () => {
   return (
-    <div className="w-full px-4 py-16 -mt-[600px] lg:-mt-[800px]">
+    <div className="w-full px-4 py-16 -mt-[600px] lg:-mt-[1200px]">
       <div className="grid grid-cols-1 md:grid-cols-2 max-w-[1480px] mx-auto   xl:border-[#E5E7EB]">
         <div className="w-full h-[480px] flex flex-col text-left xl:border-b xl:border-r xl:border-[#E5E7EB] p-8">
           <div className="w-full h-[300px]">
