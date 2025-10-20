@@ -5,11 +5,13 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Buttons from "../Button/Buttons";
 import { SlEnergy } from "react-icons/sl";
+import { CiClock2 } from "react-icons/ci";
 gsap.registerPlugin(ScrollTrigger);
 
 const ScrollReveal = () => {
+  const [leftCount, setLeftCount] = useState(0);
+  const [rightCount, setRightCount] = useState(0);
   const containerRef1 = useRef(null);
-  const counterLeft = useRef(null);
   const div1 = useRef(null);
   const div2 = useRef(null);
   const div3 = useRef(null);
@@ -21,7 +23,6 @@ const ScrollReveal = () => {
   const div9 = useRef(null);
 
   const containerRef2 = useRef(null);
-  const counterRight = useRef(null);
   const rdiv1 = useRef(null);
   const rdiv2 = useRef(null);
   const rdiv3 = useRef(null);
@@ -31,14 +32,14 @@ const ScrollReveal = () => {
 
   useGSAP(() => {
     const isMobile = window.innerWidth < 768;
-    const isTablet = window.innerWidth < 1024;
+    const isTablet = window.innerWidth < 1280;
 
-    const leftDistance = isMobile ? 145 : isTablet ? 145 : 160;
-    const rightDistance = isMobile ? 145 : isTablet ? 145 : 160;
+    const leftDistance = isMobile ? 145 : isTablet ? 160 : 160;
+    const rightDistance = isMobile ? 145 : isTablet ? 160 : 160;
     const animateSet = (
       refs,
       container,
-      counterRef,
+      setCounter,
       distance = 60,
       timelineOffset = 0.3,
       scrollEnd = 2200
@@ -50,26 +51,32 @@ const ScrollReveal = () => {
           end: `+=${scrollEnd}`,
           pin: true,
           scrub: 1.5,
+          onUpdate: (self) => {
+            const progress = self.progress; // 0 → 1
+            const count = Math.round(progress * refs.length);
+            setCounter(count);
+          },
         },
       });
 
       refs.forEach((divRef, i) => {
+        const icon = divRef.current?.querySelector(".check");
+
         tl.to(
           divRef.current,
           { y: -distance * (i + 1), duration: 5, ease: "expoScale" },
           i * timelineOffset
-        )
-          .to(
-            divRef.current?.querySelector(".check"),
-            { opacity: 1, duration: 1 },
-            i * timelineOffset
-          )
-          .to(
-            counterRef.current,
-            { innerText: i + 1, duration: 1, snap: { innerText: 1 } },
-            i * timelineOffset
+        );
+
+        if (icon) {
+          tl.to(
+            icon,
+            { opacity: 1, delay: 0.5, duration: 0.6, ease: "power1.out" },
+            "<"
           );
+        }
       });
+
       if (container === containerRef2) {
         tl.to({}, { duration: 1 });
       }
@@ -77,7 +84,7 @@ const ScrollReveal = () => {
     animateSet(
       [div1, div2, div3, div4, div5, div6, div7, div8, div9],
       containerRef1,
-      counterLeft,
+      setLeftCount,
       leftDistance,
       1.5,
       2200
@@ -86,7 +93,7 @@ const ScrollReveal = () => {
     animateSet(
       [rdiv1, rdiv2, rdiv3, rdiv4, rdiv5, rdiv6],
       containerRef2,
-      counterRight,
+      setRightCount,
       rightDistance,
       0.2,
       2200
@@ -104,16 +111,15 @@ const ScrollReveal = () => {
             >
               Manual Process{" "}
               <div className="xl:w-[80px] w-[60px] h-12 xl:h-10 bg-[#4C4C4C] rounded-2xl border-4 border-[#3b3939] text-white flex justify-center items-center ">
-                <h1 ref={counterLeft} className="text-white text-[23px]">
-                  0
-                </h1>
+                <h1 className="text-white text-[23px]">{leftCount + 1}</h1>
               </div>
               <span className="text-[18px]">Hours</span>
             </h1>
           </div>
 
-          <div className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between">
-            <div className="flex items-center gap-8 px-6 pt-2">
+          <div className="xl:w-[600px]  w-[300px]  md:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between">
+            <CiClock2 className="text-[32px] m-2" />
+            <div className="flex items-center gap-8 px-2 pt-2">
               <div>
                 <h1
                   className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
@@ -145,9 +151,10 @@ const ScrollReveal = () => {
 
           <div
             ref={div1}
-            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
+            className="xl:w-[600px]  w-[300px]  md:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
           >
-            <div className="flex items-center gap-8 px-6 pt-2">
+            <CiClock2 className="text-[32px] m-2" />
+            <div className="flex items-center gap-8 px-2 pt-2">
               <div>
                 <h1
                   className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
@@ -179,9 +186,10 @@ const ScrollReveal = () => {
 
           <div
             ref={div2}
-            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between "
+            className="xl:w-[600px]  w-[300px]  md:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between "
           >
-            <div className="flex items-center gap-8 px-6 pt-2">
+            <CiClock2 className="text-[32px] m-2" />
+            <div className="flex items-center gap-8 px-2 pt-2">
               <div>
                 <h1
                   className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
@@ -213,9 +221,10 @@ const ScrollReveal = () => {
 
           <div
             ref={div3}
-            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
+            className="xl:w-[600px]  w-[300px]  md:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
           >
-            <div className="flex items-center gap-8 px-6 pt-2">
+            <CiClock2 className="text-[32px] m-2" />
+            <div className="flex items-center gap-8 px-2 pt-2">
               <div>
                 <h1
                   className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
@@ -247,9 +256,10 @@ const ScrollReveal = () => {
 
           <div
             ref={div4}
-            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
+            className="xl:w-[600px]  w-[300px]  md:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
           >
-            <div className="flex items-center gap-8 px-6 pt-2">
+            <CiClock2 className="text-[32px] m-2" />
+            <div className="flex items-center gap-8 px-2 pt-2">
               <div>
                 <h1
                   className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
@@ -281,9 +291,10 @@ const ScrollReveal = () => {
 
           <div
             ref={div5}
-            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
+            className="xl:w-[600px]  w-[300px]  md:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
           >
-            <div className="flex items-center gap-8 px-6 pt-2">
+            <CiClock2 className="text-[32px] m-2" />
+            <div className="flex items-center gap-8 px-2 pt-2">
               <div>
                 <h1
                   className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
@@ -315,9 +326,10 @@ const ScrollReveal = () => {
 
           <div
             ref={div6}
-            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
+            className="xl:w-[600px]  w-[300px]  md:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
           >
-            <div className="flex items-center gap-8 px-6 pt-2">
+            <CiClock2 className="text-[32px] m-2" />
+            <div className="flex items-center gap-8 px-2 pt-2">
               <div>
                 <h1
                   className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
@@ -349,9 +361,10 @@ const ScrollReveal = () => {
 
           <div
             ref={div7}
-            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
+            className="xl:w-[600px]  w-[300px]  md:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
           >
-            <div className="flex items-center gap-8 px-6 pt-2">
+            <CiClock2 className="text-[32px] m-2" />
+            <div className="flex items-center gap-8 px-2 pt-2">
               <div>
                 <h1
                   className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
@@ -383,9 +396,10 @@ const ScrollReveal = () => {
 
           <div
             ref={div8}
-            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
+            className="xl:w-[600px]  w-[300px]  md:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
           >
-            <div className="flex items-center gap-8 px-6 pt-2">
+            <CiClock2 className="text-[32px] m-2" />
+            <div className="flex items-center gap-8 px-2 pt-2">
               <div>
                 <h1
                   className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
@@ -417,9 +431,10 @@ const ScrollReveal = () => {
 
           <div
             ref={div9}
-            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
+            className="xl:w-[600px]  w-[300px]  md:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
           >
-            <div className="flex items-center gap-8 px-6 pt-2">
+            <CiClock2 className="text-[32px] m-2" />
+            <div className="flex items-center gap-8 px-2 pt-2">
               <div>
                 <h1
                   className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
@@ -469,9 +484,7 @@ const ScrollReveal = () => {
                 </h1>
               </div>
               <div className="xl:w-[80px] w-[60px] h-12 xl:h-10 bg-[#7e6ed6] border-4 border-[#827baa] rounded-2xl text-black flex justify-center items-center ">
-                <h1 ref={counterRight} className="text-white text-[23px]">
-                  0
-                </h1>
+                <h1 className="text-white text-[23px]">{rightCount}</h1>
               </div>
               <span className="text-[18px]">
                 Min<span className="hidden lg:inline-block">utes</span>
@@ -479,8 +492,9 @@ const ScrollReveal = () => {
             </h1>
           </div>
 
-          <div className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between">
-            <div className="flex items-center gap-8 px-6 pt-2">
+          <div className="xl:w-[600px]  w-[300px]  md:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between">
+            <SlEnergy className="text-[32px] text-[#7e6ed6] m-2" />
+            <div className="flex items-center gap-8 px-2 pt-2">
               <div>
                 <div>
                   <h1
@@ -514,9 +528,10 @@ const ScrollReveal = () => {
 
           <div
             ref={rdiv1}
-            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
+            className="xl:w-[600px]  w-[300px]  md:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
           >
-            <div className="flex items-center gap-8 px-6 pt-2">
+            <SlEnergy className="text-[32px] text-[#7e6ed6] m-2" />
+            <div className="flex items-center gap-8 px-2 pt-2">
               <div>
                 <h1
                   className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
@@ -548,9 +563,10 @@ const ScrollReveal = () => {
 
           <div
             ref={rdiv2}
-            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
+            className="xl:w-[600px]  w-[300px]  md:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
           >
-            <div className="flex items-center gap-8 px-6 pt-2">
+            <SlEnergy className="text-[32px] text-[#7e6ed6] m-2" />
+            <div className="flex items-center gap-8 px-2 pt-2">
               <div>
                 <h1
                   className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
@@ -582,9 +598,10 @@ const ScrollReveal = () => {
 
           <div
             ref={rdiv3}
-            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
+            className="xl:w-[600px]  w-[300px]  md:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
           >
-            <div className="flex items-center gap-8 px-6 pt-2">
+            <SlEnergy className="text-[32px] text-[#7e6ed6] m-2" />
+            <div className="flex items-center gap-8 px-2 pt-2">
               <div>
                 <h1
                   className="text-[#4C4C4C] lg:text-[18px] text-[13px]"
@@ -616,9 +633,10 @@ const ScrollReveal = () => {
 
           <div
             ref={rdiv4}
-            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
+            className="xl:w-[600px]  w-[300px]  md:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
           >
-            <div className="flex items-center gap-8 px-6 pt-2">
+            <SlEnergy className="text-[32px] text-[#7e6ed6] m-2" />
+            <div className="flex items-center gap-8 px-2 pt-2">
               <div>
                 <h1
                   className="text-[#4C4C4C] lg:text-[18px] text-[14px]"
@@ -650,9 +668,10 @@ const ScrollReveal = () => {
 
           <div
             ref={rdiv5}
-            className="xl:w-[600px]  w-[300px]  xl:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
+            className="xl:w-[600px]  w-[300px]  md:h-[100px] h-[70px] md:w-[500px]  md: rounded-[10px] border border-[#D3CECE] bg-white flex items-start justify-between"
           >
-            <div className="flex items-center gap-8 px-6 pt-2">
+            <SlEnergy className="text-[32px] text-[#7e6ed6] m-2" />
+            <div className="flex items-center gap-8 px-2 pt-2">
               <div>
                 <h1
                   className="text-[#4C4C4C] lg:text-[18px] text-[14px]"

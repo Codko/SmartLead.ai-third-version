@@ -18,7 +18,7 @@ const Revenuecontent = () => {
         trigger: container.current,
         start: "top center",
         end: "bottom top",
-        scrub: 2,
+        scrub: 1,
       },
     });
     tl.from(tagRef.current, {

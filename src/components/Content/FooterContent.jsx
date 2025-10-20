@@ -201,7 +201,7 @@ const FooterContent = () => {
           </div>
         </div>
         <div className="mt-20 mr-10">
-          <img src="/images/image 12.svg" alt="" className="xl:w-[250px]"/>
+          <img src="/images/image 12.svg" alt="" className="xl:w-[250px]" />
         </div>
       </div>
 
@@ -228,3 +228,6 @@ const FooterContent = () => {
 };
 
 export default FooterContent;
+
+//From first contact to ptimized results - Your smartagnet handles it all
+//
