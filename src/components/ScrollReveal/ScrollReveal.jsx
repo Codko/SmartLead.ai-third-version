@@ -30,6 +30,11 @@ const ScrollReveal = () => {
   const rdiv6 = useRef(null);
 
   useGSAP(() => {
+    const isMobile = window.innerWidth < 768;
+    const isTablet = window.innerWidth < 1024;
+
+    const leftDistance = isMobile ? 145 : isTablet ? 145 : 160;
+    const rightDistance = isMobile ? 145 : isTablet ? 145 : 160;
     const animateSet = (
       refs,
       container,
@@ -61,17 +66,20 @@ const ScrollReveal = () => {
           )
           .to(
             counterRef.current,
-            { innerText: i + 1, duration: 0.1, snap: { innerText: 1 } },
+            { innerText: i + 1, duration: 1, snap: { innerText: 1 } },
             i * timelineOffset
           );
       });
+      if (container === containerRef2) {
+        tl.to({}, { duration: 1 });
+      }
     };
     animateSet(
       [div1, div2, div3, div4, div5, div6, div7, div8, div9],
       containerRef1,
       counterLeft,
-      160,
-      1,
+      leftDistance,
+      1.5,
       2200
     );
 
@@ -79,9 +87,9 @@ const ScrollReveal = () => {
       [rdiv1, rdiv2, rdiv3, rdiv4, rdiv5, rdiv6],
       containerRef2,
       counterRight,
-      160,
-      0.6,
-      1000
+      rightDistance,
+      0.2,
+      2200
     );
   }, []);
 
@@ -466,7 +474,7 @@ const ScrollReveal = () => {
                 </h1>
               </div>
               <span className="text-[18px]">
-                Min<span className="hidden lg:block">utes</span>
+                Min<span className="hidden lg:inline-block">utes</span>
               </span>
             </h1>
           </div>
@@ -674,7 +682,7 @@ const ScrollReveal = () => {
             />
           </div>
         </div>
-        <div className="lg:flex flex-col items-center gap-6 hidden mt-48">
+        <div className="lg:flex flex-col items-center gap-6 hidden -mt-[750px] relative z-50">
           <p
             style={{ fontFamily: "regular" }}
             className="text-sm sm:text-base text-[#898989] w-1/2 text-center"

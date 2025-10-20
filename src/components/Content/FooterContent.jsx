@@ -64,7 +64,7 @@ const FooterContent = () => {
         <div className="w-full lg:w-[439px] px-4 mb-8 lg:mb-0">
           <p
             style={{ fontFamily: "regular" }}
-            className="text-base md:text-[15px] text-[#898989] lg:text-center lg:text-left"
+            className="text-base md:text-[15px] text-[#898989] "
           >
             AI-native Outbound OS built for SDRs, agencies, and GTM teams who
             want to scale with intelligence.

@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
 
-const Buttons = ({ text, w  ,bg}) => {
-   const [mobile, setmobile] = useState(false);
-    useEffect(() => {
-      const checkMobile = () => setmobile(window.innerWidth < 1024);
-      checkMobile();
-      window.addEventListener("resize", checkMobile);
-      return () => window.removeEventListener("resize", checkMobile);
-    }, []);
+const Buttons = ({ text, w, bg, b }) => {
+  const [mobile, setmobile] = useState(false);
+  useEffect(() => {
+    const checkMobile = () => setmobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
   return (
     <div
       style={{
         fontFamily: "regular",
         width: !mobile ? `${w}px` : undefined,
-        backgroundColor: bg ? '#fff' : '#6E58F1',
-        color:bg ? '#6E58F1' : '#fff'
+        backgroundColor: bg ? "#fff" : "#6E58F1",
+        color: bg ? "#6E58F1" : "#fff",
+        border: b ? "1px" : "",
+        border: b ? "1px solid #fff" : "none",
       }}
+      onClick={() => alert("hello")}
       className={`${
         !w
           ? "xl:w-[196px] xl:h-[47px] lg:w-[155px] lg:h-[47px] md:w-[130px] md:h-[40px] sm:w-[110px] sm:h-[40px] w-[90px] h-[35px]"

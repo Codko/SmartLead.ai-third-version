@@ -11,31 +11,23 @@ gsap.registerPlugin(ScrollTrigger);
 const Revenuecontent = () => {
   const container = useRef(null);
   const headingRef = useRef(null);
-  const paraRef = useRef(null);
-  const buttonRef = useRef(null);
+  const tagRef = useRef(null);
   useGSAP(() => {
-    const button = gsap.utils.selector(buttonRef);
-    console.log(button("div"));
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: container.current,
-        start: "top 80%",
+        start: "top center",
         end: "bottom top",
         scrub: 2,
       },
     });
+    tl.from(tagRef.current, {
+      y: -100,
+      duration: 0.4,
+      opacity: 0,
+    });
     tl.from(headingRef.current, {
-      y: -100,
-      duration: 0.5,
-      opacity: 0,
-    });
-    tl.from(paraRef.current, {
-      y: -100,
-      duration: 0.5,
-      opacity: 0,
-    });
-    tl.from(buttonRef.current, {
-      duration: 0.5,
+      duration: 0.4,
       opacity: 0,
     });
   }, []);
@@ -45,6 +37,13 @@ const Revenuecontent = () => {
         ref={container}
         className="flex flex-col justify-center items-center gap-4"
       >
+        <h1
+          ref={tagRef}
+          style={{ fontFamily: "regular-r" }}
+          className="xl:text-[24px] text-[18px] text-[#848884]"
+        >
+          Manual Chaos → AI Clarity
+        </h1>
         <h1
           ref={headingRef}
           style={{ fontFamily: "bold-r" }}

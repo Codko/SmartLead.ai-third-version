@@ -9,6 +9,7 @@ import Testimonials from "./Sections/Body/Testimonials";
 import Footer from "./Sections/Footer";
 import FAQs from "./Sections/Body/FAQs";
 import ScrollReveal from "./components/ScrollReveal/ScrollReveal";
+import Lastbar from "./components/Bar/Lastbar";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
       <Section5 />
       <Testimonials />
       <FAQs />
+      <Lastbar />
       <Footer />
     </div>
   );
