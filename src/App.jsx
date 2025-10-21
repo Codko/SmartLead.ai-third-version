@@ -16,7 +16,7 @@ const App = () => {
     <div className="overflow-x-hidden">
       <Hero />
       <Section2 />
-      <div className="-mt-[1800px] lg:-mt-[1600px]">
+      <div className="-mt-[1800px] lg:-mt-[1700px]">
         <ScrollReveal />
       </div>
       <div>

@@ -16,7 +16,7 @@ const Revenuecontent = () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: container.current,
-        start: "top center",
+        start: "top 60%",
         end: "bottom top",
         scrub: 1,
       },
@@ -27,7 +27,7 @@ const Revenuecontent = () => {
       opacity: 0,
     });
     tl.from(headingRef.current, {
-      duration: 0.4,
+      duration: 0.2,
       opacity: 0,
     });
   }, []);
