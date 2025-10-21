@@ -16,7 +16,6 @@ const Buttons = ({ text, w, bg, b }) => {
         width: !mobile ? `${w}px` : undefined,
         backgroundColor: bg ? "#fff" : "#6E58F1",
         color: bg ? "#6E58F1" : "#fff",
-        border: b ? "1px" : "",
         border: b ? "1px solid #fff" : "none",
       }}
       onClick={() => alert("hello")}
